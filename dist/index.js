@@ -50,8 +50,11 @@ function download(version) {
             const platform = mapPlatform(os.platform());
             const arch = mapArch(os.arch());
             const url = createUrl(version, platform, arch);
+            core.debug(`Downloading ODM at ${url}`);
             const tarPath = yield tc.downloadTool(url);
+            core.debug(`Unpacking ODM at ${tarPath}`);
             const odmFolder = yield tc.extractTar(tarPath);
+            core.debug(`ODM unpacked to ${odmFolder}`);
             const odmPath = path.join(odmFolder, 'odm');
             return odmPath;
         }

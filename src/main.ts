@@ -1,18 +1,16 @@
+import * as fs from 'fs'
 import * as core from '@actions/core'
-import {wait} from './wait'
+import {download} from './download'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
-  } catch (error) {
-    if (error instanceof Error) core.setFailed(error.message)
+    const version = core.getInput('version')
+    core.info(`Setup ODM version ${version}`)
+    const odmPath = await download(version)
+    fs.chmodSync(odmPath, '755')
+    core.addPath(odmPath)
+  } catch (e) {
+    core.setFailed(e as string | Error)
   }
 }
 

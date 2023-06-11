@@ -1,8 +1,8 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
+  "name": "setup-odm",
+  "version": "0.1.0",
   "private": true,
-  "description": "TypeScript template action",
+  "description": "GitHub Action for setting up ODM",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,17 +15,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/johanfylling/setup-odm.git"
   },
   "keywords": [
     "actions",
-    "node",
-    "setup"
+    "setup",
+    "odm"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "Johan Fylling",
+  "license": "Apache-2.0",
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "@actions/tool-cache": "^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",

@@ -9,8 +9,11 @@ export async function download(version: string): Promise<string> {
     const arch = mapArch(os.arch())
     const url = createUrl(version, platform, arch)
 
+    core.debug(`Downloading ODM at ${url}`)
     const tarPath = await tc.downloadTool(url)
+    core.debug(`Unpacking ODM at ${tarPath}`)
     const odmFolder = await tc.extractTar(tarPath)
+    core.debug(`ODM unpacked to ${odmFolder}`)
     const odmPath = path.join(odmFolder, 'odm')
 
     return odmPath

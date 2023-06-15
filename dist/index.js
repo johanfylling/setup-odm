@@ -138,7 +138,9 @@ function run() {
             const odmPath = yield (0, download_1.download)(version);
             core.debug(`Setting executable permission for ODM at ${odmPath}`);
             fs.chmodSync(odmPath, '755');
-            core.addPath(odmPath);
+            const odmDir = odmPath.substring(0, odmPath.lastIndexOf('/'));
+            core.debug(`Adding ODM dir '${odmDir}' to PATH`);
+            core.addPath(odmDir);
         }
         catch (e) {
             core.setFailed(e);

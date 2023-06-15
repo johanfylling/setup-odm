@@ -9,7 +9,9 @@ async function run(): Promise<void> {
     const odmPath = await download(version)
     core.debug(`Setting executable permission for ODM at ${odmPath}`)
     fs.chmodSync(odmPath, '755')
-    core.addPath(odmPath)
+    const odmDir = odmPath.substring(0, odmPath.lastIndexOf('/'))
+    core.debug(`Adding ODM dir '${odmDir}' to PATH`)
+    core.addPath(odmDir)
   } catch (e) {
     core.setFailed(e as string | Error)
   }

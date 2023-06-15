@@ -1,6 +1,9 @@
 name: 'Setup ODM'
 description: 'Sets up OPA Dependency Manager in your GitHub Actions workflow'
 author: 'Johan Fylling'
+branding:
+  icon: box
+  color: blue
 inputs:
   version:
     description: Version of ODM to install (defaults to 'latest')

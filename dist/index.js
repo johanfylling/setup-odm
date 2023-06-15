@@ -55,7 +55,8 @@ function download(version) {
             core.debug(`Unpacking ODM at ${tarPath}`);
             const odmFolder = yield tc.extractTar(tarPath);
             core.debug(`ODM unpacked to ${odmFolder}`);
-            const odmPath = path.join(odmFolder, 'odm');
+            const odmPath = path.join(odmFolder, `${platform}_${arch}`, 'odm');
+            core.debug(`ODM executable at ${odmPath}`);
             return odmPath;
         }
         catch (e) {
@@ -135,6 +136,7 @@ function run() {
             const version = core.getInput('version');
             core.info(`Setup ODM version ${version}`);
             const odmPath = yield (0, download_1.download)(version);
+            core.debug(`Setting executable permission for ODM at ${odmPath}`);
             fs.chmodSync(odmPath, '755');
             core.addPath(odmPath);
         }

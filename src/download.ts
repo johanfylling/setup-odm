@@ -14,7 +14,7 @@ export async function download(version: string): Promise<string> {
     core.debug(`Unpacking ODM at ${tarPath}`)
     const odmFolder = await tc.extractTar(tarPath)
     core.debug(`ODM unpacked to ${odmFolder}`)
-    const odmPath = path.join(odmFolder, 'odm')
+    const odmPath = path.join(odmFolder, `${platform}_${arch}`, 'odm')
 
     return odmPath
   } catch (e) {

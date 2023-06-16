@@ -16,10 +16,11 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v3
 
+    - name: Setup OPA
+      uses: open-policy-agent/setup-opa@v2
+
     - name: Setup ODM
       uses: johanfylling/setup-odm@v1
-      with:
-        version: latest
 
     - name: Run Tests
       run: odm test -v
